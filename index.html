@@ -28,6 +28,12 @@ body {
 
 .container {
   z-index: 2;
+  animation: fadeIn 2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
 h1 {
@@ -43,7 +49,7 @@ h1 {
 p {
   font-size: 18px;
   max-width: 300px;
-  margin: auto;
+  margin: 15px auto;
 }
 
 button {
@@ -73,28 +79,53 @@ button:hover {
 }
 
 @keyframes floatUp {
-  0% {
-    transform: translateY(0);
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
+  0% { transform: translateY(0); opacity: 0.7; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Picture frame */
+img {
+  border-radius: 20px;
+  border: 5px solid white;
+  width: 200px;
+  height: auto;
+  box-shadow: 0 0 25px #ff4f81, 0 0 50px #ff7eb3;
+  margin: 20px auto;
+  display: block;
+}
+
+/* Hidden message */
+#hiddenMessage {
+  display: none;
+  font-size: 20px;
+  margin-top: 15px;
+  animation: fadeInMsg 2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInMsg {
+  to { opacity: 1; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5d33f45b80.mp3?filename=soft-love-music-11028.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
-  <h1>Hey Beautiful ❤️</h1>
+  <h1>baby Whitney ❤️</h1>
+  <img src="whitney.jpg" alt="Whitney">
   <p>
     I made this little space just for you.  
     You make my days brighter and my smile real.  
     I'm grateful for you every single day.
   </p>
   <button onclick="showMessage()">Tap Me 💕</button>
+  <div id="hiddenMessage">💌 I love you more than words can say ❤️</div>
 </div>
 
 <script>
@@ -117,6 +148,11 @@ function createHeart() {
 }
 
 setInterval(createHeart, 500);
+
+// Show hidden message after 5 seconds
+setTimeout(() => {
+  document.getElementById('hiddenMessage').style.display = 'block';
+}, 5000);
 </script>
 
 </body>
