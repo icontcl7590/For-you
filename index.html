@@ -1,58 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Hey You</title>
-
+<title>For You ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{
-background:linear-gradient(135deg,#0f0f0f,#1a1a1a);
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-text-align:center;
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ff4f81, #ff9a9e);
+  background-size: 400% 400%;
+  animation: gradientBG 8s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  text-align: center;
 }
 
-.card{
-background:#141414;
-padding:30px;
-border-radius:20px;
-box-shadow:0 0 40px rgba(255,70,120,0.35);
-max-width:500px;
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
-h1{
-color:#ff4d88;
+.container {
+  z-index: 2;
 }
 
-p{
-font-size:18px;
-line-height:1.7;
+h1 {
+  font-size: 38px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff; }
+  to { text-shadow: 0 0 25px #fff, 0 0 40px #ff4f81; }
+}
+
+p {
+  font-size: 18px;
+  max-width: 300px;
+  margin: auto;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #ff4f81;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+  background: #ffe6ec;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -10px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-<h1>Hi ❤️</h1>
-
-<p>
-I know people celebrate Valentine’s Day,<br><br>
-but I don't want just one date to decide when I show you love.<br><br>
-
-I want to care about you on random days,<br>
-normal days,<br>
-and even boring days.<br><br>
-
-Because you matter to me every day, not just February 14.
-</p>
-
+<div class="container">
+  <h1>Hey Beautiful ❤️</h1>
+  <p>
+    I made this little space just for you.  
+    You make my days brighter and my smile real.  
+    I'm grateful for you every single day.
+  </p>
+  <button onclick="showMessage()">Tap Me 💕</button>
 </div>
+
+<script>
+function showMessage() {
+  alert("You are special to me more than you know ❤️");
+}
+
+// Create floating hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 500);
+</script>
 
 </body>
 </html>
