@@ -1,22 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>For Baby Whitney 💖</title>
+  <title>Surprise for Baby Whitney 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description" content="A special Valentine gift made with love for baby Whitney 💕">
-  <meta property="og:title" content="For Baby Whitney 💘">
-  <meta property="og:description" content="A romantic surprise made just for you.">
 
   <style>
     body {
       margin: 0;
-      padding: 0;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ff4f81, #ff9a9e, #ffb3c6);
-      background-size: 500% 500%;
-      animation: gradientBG 12s ease infinite;
+      background: linear-gradient(135deg, #ff4f81, #ff758c, #ff9ecf);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -25,36 +18,27 @@
       text-align: center;
     }
 
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
     .container {
-      z-index: 2;
-      animation: fadeIn 2s ease forwards;
+      animation: popIn 1s ease-out forwards;
+      transform: scale(0.8);
       opacity: 0;
       padding: 20px;
     }
 
-    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes popIn {
+      to { transform: scale(1); opacity: 1; }
+    }
 
     h1 {
       font-size: 48px;
-      animation: glow 2s ease-in-out infinite alternate;
-      text-shadow: 0 0 15px #fff, 0 0 25px #ff4f81, 0 0 40px #ff7eb3;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 15px #fff; }
-      to { text-shadow: 0 0 35px #fff, 0 0 60px #ff4f81, 0 0 90px #ff7eb3; }
+      margin-bottom: 15px;
+      text-shadow: 0 0 15px white;
     }
 
     p {
       font-size: 20px;
       max-width: 450px;
-      margin: 15px auto;
+      margin: auto;
       line-height: 1.6;
     }
 
@@ -62,121 +46,108 @@
       margin-top: 25px;
       padding: 15px 35px;
       border: none;
-      border-radius: 35px;
+      border-radius: 40px;
       background: white;
       color: #ff4f81;
       font-size: 18px;
       cursor: pointer;
-      transition: 0.3s ease;
-      box-shadow: 0 0 15px #fff, 0 0 25px #ff4f81;
+      transition: 0.2s ease;
+      box-shadow: 0 0 20px white;
     }
 
     button:hover {
-      transform: scale(1.12);
-      background: #ffe6ec;
+      transform: scale(1.1);
+    }
+
+    .heart, .confetti {
+      position: absolute;
+      pointer-events: none;
+      will-change: transform, opacity;
     }
 
     .heart {
-      position: absolute;
-      bottom: -10px;
-      font-size: 25px;
-      opacity: 0.8;
-      pointer-events: none;
-      will-change: transform;
-      animation: floatUp linear forwards;
+      font-size: 24px;
+      animation: floatUp 3.5s linear forwards;
     }
 
     @keyframes floatUp {
-      0% { transform: translate3d(0,0,0) rotate(0deg); opacity: 0.9; }
-      100% { transform: translate3d(0,-100vh,0) rotate(360deg); opacity: 0; }
+      from { transform: translate3d(0,0,0); opacity: 1; }
+      to { transform: translate3d(0,-100vh,0); opacity: 0; }
     }
 
-    #hiddenMessage {
+    #message {
       display: none;
-      font-size: 22px;
-      margin-top: 15px;
-      animation: fadeIn 2s ease forwards;
-      text-shadow: 0 0 20px #fff, 0 0 40px #ff4f81;
-    }
-
-    #valentineMessage {
-      display: none;
-      font-size: 26px;
       margin-top: 20px;
-      color: #ffe6ec;
-      text-shadow: 0 0 25px #fff, 0 0 50px #ff4f81;
+      font-size: 24px;
+      text-shadow: 0 0 20px white;
     }
   </style>
 </head>
 
 <body>
 
-<audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5d33f45b80.mp3?filename=soft-love-music-11028.mp3" type="audio/mpeg">
-</audio>
-
 <div class="container">
-  <h1>Baby Whitney ❤️</h1>
+  <h1>Baby Whitney 💕</h1>
 
   <p>
-    Happy Valentine’s Day, my love.  
-    This little world of colors and hearts is made just for you.  
-    You make my days brighter, my heart warmer,  
-    and my life sweeter than I ever imagined. 💕
+    I made something just for you…  
+    Because your smile means everything to me 💖
   </p>
 
-  <button onclick="showMessage()">Tap Me 💖</button>
+  <button onclick="surprise()">Open Surprise 🎁</button>
 
-  <div id="hiddenMessage">
-    💌 I love you more than words could ever explain.
-  </div>
-
-  <div id="valentineMessage">
-    💘 Will you be my Valentine forever? 💘
+  <div id="message">
+    💘 Happy Valentine’s Day! You make my world brighter every single day 💘
   </div>
 </div>
 
 <script>
-function showMessage() {
-  alert("You are my one and only, Baby Whitney ❤️");
-}
 
-// Smooth floating hearts
-function createHeart(x, y) {
+function createHeart(x) {
   const heart = document.createElement("div");
   heart.className = "heart";
-  heart.innerHTML = "❤️";
+  heart.innerHTML = "💖";
   heart.style.left = x + "px";
-  heart.style.top = y + "px";
-  heart.style.fontSize = (Math.random() * 20 + 20) + "px";
-  heart.style.color = `hsl(${Math.random()*360}, 100%, 70%)`;
-  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  heart.style.bottom = "0px";
+  heart.style.fontSize = (Math.random()*15+20)+"px";
   document.body.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 5000);
+  setTimeout(()=>heart.remove(),3500);
 }
 
-// Continuous hearts (optimized)
-setInterval(() => {
-  createHeart(Math.random() * window.innerWidth, window.innerHeight);
-}, 900);
+function createConfetti() {
+  const colors=["#fff","#ffe6ec","#ff9ecf"];
+  for(let i=0;i<40;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.width="8px";
+    c.style.height="8px";
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    c.style.left=window.innerWidth/2+"px";
+    c.style.top=window.innerHeight/2+"px";
+    document.body.appendChild(c);
 
-// Click hearts
-document.body.addEventListener('click', function(e) {
-  for (let i=0; i<3; i++) {
-    createHeart(e.clientX + Math.random()*20-10, e.clientY + Math.random()*20-10);
+    const dx=(Math.random()-0.5)*8;
+    const dy=(Math.random()-0.5)*8;
+
+    let life=0;
+    const anim=setInterval(()=>{
+      life++;
+      c.style.transform=`translate3d(${dx*life}px,${dy*life}px,0)`;
+      c.style.opacity=1-life/40;
+      if(life>40){c.remove();clearInterval(anim);}
+    },16);
   }
-});
+}
 
-// Hidden message
-setTimeout(() => {
-  document.getElementById('hiddenMessage').style.display='block';
-}, 4000);
+function surprise() {
+  document.getElementById("message").style.display="block";
+  createConfetti();
 
-// Final message
-setTimeout(() => {
-  document.getElementById('valentineMessage').style.display='block';
-}, 9000);
+  for(let i=0;i<12;i++){
+    createHeart(Math.random()*window.innerWidth);
+  }
+}
+
 </script>
 
 </body>
