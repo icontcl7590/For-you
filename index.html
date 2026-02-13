@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Happy Valentine ❤️</title>
+  <title>For Baby Whitney 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="A special Valentine gift made with love for baby Whitney 💕">
+  <meta property="og:title" content="For Baby Whitney 💘">
+  <meta property="og:description" content="A romantic surprise made just for you.">
+
   <style>
     body {
       margin: 0;
@@ -30,12 +35,13 @@
       z-index: 2;
       animation: fadeIn 2s ease forwards;
       opacity: 0;
+      padding: 20px;
     }
 
     @keyframes fadeIn { to { opacity: 1; } }
 
     h1 {
-      font-size: 50px;
+      font-size: 48px;
       animation: glow 2s ease-in-out infinite alternate;
       text-shadow: 0 0 15px #fff, 0 0 25px #ff4f81, 0 0 40px #ff7eb3;
     }
@@ -45,7 +51,12 @@
       to { text-shadow: 0 0 35px #fff, 0 0 60px #ff4f81, 0 0 90px #ff7eb3; }
     }
 
-    p { font-size: 20px; max-width: 450px; margin: 15px auto; line-height: 1.5; }
+    p {
+      font-size: 20px;
+      max-width: 450px;
+      margin: 15px auto;
+      line-height: 1.6;
+    }
 
     button {
       margin-top: 25px;
@@ -60,33 +71,33 @@
       box-shadow: 0 0 15px #fff, 0 0 25px #ff4f81;
     }
 
-    button:hover { transform: scale(1.15); background: #ffe6ec; }
+    button:hover {
+      transform: scale(1.12);
+      background: #ffe6ec;
+    }
 
     .heart {
       position: absolute;
       bottom: -10px;
       font-size: 25px;
-      animation: floatUp linear infinite;
       opacity: 0.8;
       pointer-events: none;
+      will-change: transform;
+      animation: floatUp linear forwards;
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-      50% { transform: translateY(-50vh) rotate(180deg); opacity: 0.6; }
-      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+      0% { transform: translate3d(0,0,0) rotate(0deg); opacity: 0.9; }
+      100% { transform: translate3d(0,-100vh,0) rotate(360deg); opacity: 0; }
     }
 
     #hiddenMessage {
       display: none;
       font-size: 22px;
       margin-top: 15px;
-      animation: fadeInMsg 2s ease forwards;
-      opacity: 0;
+      animation: fadeIn 2s ease forwards;
       text-shadow: 0 0 20px #fff, 0 0 40px #ff4f81;
     }
-
-    @keyframes fadeInMsg { to { opacity: 1; } }
 
     #valentineMessage {
       display: none;
@@ -94,17 +105,6 @@
       margin-top: 20px;
       color: #ffe6ec;
       text-shadow: 0 0 25px #fff, 0 0 50px #ff4f81;
-    }
-
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: red;
-      pointer-events: none;
-      opacity: 0.9;
-      transform: rotate(0deg);
-      border-radius: 3px;
     }
   </style>
 </head>
@@ -116,41 +116,50 @@
 </audio>
 
 <div class="container">
-  <h1>baby Whitney ❤️</h1>
+  <h1>Baby Whitney ❤️</h1>
+
   <p>
-    Happy Valentine’s Day, baby Whitney!  
-    This little page is just for you.  
-    Every heartbeat reminds me how special you are.  
-    You make my world brighter and my smile bigger. 💖
+    Happy Valentine’s Day, my love.  
+    This little world of colors and hearts is made just for you.  
+    You make my days brighter, my heart warmer,  
+    and my life sweeter than I ever imagined. 💕
   </p>
-  <button onclick="showMessage(); burstConfetti()">Tap Me 💕</button>
-  <div id="hiddenMessage">💌 I love you more than words can ever express ❤️</div>
-  <div id="valentineMessage">💘 Will you be my Valentine forever, baby Whitney? 💘</div>
+
+  <button onclick="showMessage()">Tap Me 💖</button>
+
+  <div id="hiddenMessage">
+    💌 I love you more than words could ever explain.
+  </div>
+
+  <div id="valentineMessage">
+    💘 Will you be my Valentine forever? 💘
+  </div>
 </div>
 
 <script>
 function showMessage() {
-  alert("You are my one and only, baby Whitney ❤️");
+  alert("You are my one and only, Baby Whitney ❤️");
 }
 
-// Floating hearts
+// Smooth floating hearts
 function createHeart(x, y) {
   const heart = document.createElement("div");
-  heart.classList.add("heart");
+  heart.className = "heart";
   heart.innerHTML = "❤️";
   heart.style.left = x + "px";
   heart.style.top = y + "px";
-  heart.style.fontSize = (Math.random() * 30 + 20) + "px";
+  heart.style.fontSize = (Math.random() * 20 + 20) + "px";
   heart.style.color = `hsl(${Math.random()*360}, 100%, 70%)`;
-  heart.style.animationDuration = (Math.random() * 4 + 4) + "s";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 8000);
+
+  setTimeout(() => heart.remove(), 5000);
 }
 
-// Continuous floating hearts
+// Continuous hearts (optimized)
 setInterval(() => {
   createHeart(Math.random() * window.innerWidth, window.innerHeight);
-}, 400);
+}, 900);
 
 // Click hearts
 document.body.addEventListener('click', function(e) {
@@ -159,57 +168,15 @@ document.body.addEventListener('click', function(e) {
   }
 });
 
-// Show hidden message after 4s
-setTimeout(() => document.getElementById('hiddenMessage').style.display='block', 4000);
+// Hidden message
+setTimeout(() => {
+  document.getElementById('hiddenMessage').style.display='block';
+}, 4000);
 
-// Valentine heart shape after 10s
+// Final message
 setTimeout(() => {
   document.getElementById('valentineMessage').style.display='block';
-  createHeartShape();
-}, 10000);
-
-// Heart-shaped pattern
-function createHeartShape() {
-  const heartCount = 80;
-  const centerX = window.innerWidth/2;
-  const centerY = window.innerHeight/2 - 50;
-  for (let i=0; i<heartCount; i++){
-    const angle = Math.PI*2*(i/heartCount);
-    const r = 150;
-    const x = centerX + r*16*Math.pow(Math.sin(angle),3);
-    const y = centerY - r*(13*Math.cos(angle)-5*Math.cos(2*angle)-2*Math.cos(3*angle)-Math.cos(4*angle));
-    createHeart(x,y);
-  }
-}
-
-// Confetti burst on button click
-function burstConfetti() {
-  const colors = ['#ff4f81','#ff7eb3','#ffe6ec','#ff758c','#ffb3c6','#ff99aa'];
-  for(let i=0; i<100; i++){
-    const conf = document.createElement('div');
-    conf.classList.add('confetti');
-    conf.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-    conf.style.left = (window.innerWidth/2 + Math.random()*200-100) + 'px';
-    conf.style.top = (window.innerHeight/2 + Math.random()*50-25) + 'px';
-    conf.style.width = (Math.random()*10 +5) + 'px';
-    conf.style.height = conf.style.width;
-    document.body.appendChild(conf);
-
-    const dx = (Math.random()-0.5)*10;
-    const dy = Math.random()*-10-2;
-    const rotate = Math.random()*360;
-
-    let lifetime = 0;
-    const animate = setInterval(()=>{
-      lifetime++;
-      conf.style.left = parseFloat(conf.style.left) + dx + 'px';
-      conf.style.top = parseFloat(conf.style.top) + dy + 'px';
-      conf.style.transform = `rotate(${rotate*lifetime}deg)`;
-      conf.style.opacity = 1 - lifetime/80;
-      if(lifetime>80){ conf.remove(); clearInterval(animate);}
-    },16);
-  }
-}
+}, 9000);
 </script>
 
 </body>
