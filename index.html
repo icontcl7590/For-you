@@ -9,7 +9,8 @@
       margin: 0;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff4f81, #ff758c, #ff9ecf);
+      /* Grey gradient background */
+      background: linear-gradient(135deg, #a8a8a8, #888888, #b0b0b0);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,6 +24,9 @@
       transform: scale(0.8);
       opacity: 0;
       padding: 20px;
+      backdrop-filter: blur(5px);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
     }
 
     @keyframes popIn {
@@ -32,7 +36,7 @@
     h1 {
       font-size: 48px;
       margin-bottom: 15px;
-      text-shadow: 0 0 15px white;
+      text-shadow: 0 0 15px #fff;
     }
 
     p {
@@ -40,6 +44,7 @@
       max-width: 450px;
       margin: auto;
       line-height: 1.6;
+      color: #f0f0f0;
     }
 
     button {
@@ -47,12 +52,12 @@
       padding: 15px 35px;
       border: none;
       border-radius: 40px;
-      background: white;
+      background: #fff;
       color: #ff4f81;
       font-size: 18px;
       cursor: pointer;
       transition: 0.2s ease;
-      box-shadow: 0 0 20px white;
+      box-shadow: 0 0 20px #fff;
     }
 
     button:hover {
@@ -132,12 +137,13 @@ function createHeart(x) {
   heart.style.left = x + "px";
   heart.style.bottom = "0px";
   heart.style.fontSize = (Math.random()*15+20)+"px";
+  heart.style.color = "#ff9ecf"; // pink hearts pop on grey
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),3500);
 }
 
 function createConfetti() {
-  const colors=["#fff","#ffe6ec","#ff9ecf"];
+  const colors=["#ff4f81","#ffe6ec","#ff9ecf"];
   for(let i=0;i<40;i++){
     const c=document.createElement("div");
     c.className="confetti";
@@ -169,13 +175,12 @@ function surprise() {
     createHeart(Math.random()*window.innerWidth);
   }
 
-  // Fade in final line after 3 seconds
   setTimeout(() => {
     document.getElementById("finalLine").style.opacity = "1";
   }, 3000);
 }
 
-// Initial hearts floating softly
+// Initial floating hearts
 setTimeout(()=>{
   for(let i=0;i<12;i++){
     createHeart(Math.random()*window.innerWidth);
