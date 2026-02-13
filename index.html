@@ -81,6 +81,12 @@
       font-size: 24px;
       text-shadow: 0 0 20px white;
     }
+
+    #finalLine {
+      opacity: 0;
+      margin-top: 20px;
+      transition: opacity 2s ease;
+    }
   </style>
 </head>
 
@@ -90,19 +96,35 @@
   <h1>Baby Whitney 💕</h1>
 
   <p>
-    I made something just for you…  
-    Because your smile means everything to me 💖
+    From the moment you came into my life,  
+    everything started feeling warmer and brighter.  
+    Your smile feels like home to me,  
+    and your laugh is my favorite sound in the world.  
+
+    Out of everyone, my heart chose you —  
+    and I would choose you again in every lifetime. 💞
   </p>
 
   <button onclick="surprise()">Open Surprise 🎁</button>
 
   <div id="message">
-    💘 Happy Valentine’s Day! You make my world brighter every single day 💘
+    <div class="mainMessage">
+      💘 Baby Whitney,<br><br>
+      you are not just my Valentine…<br>
+      you are my happiness, my peace, and my forever.<br><br>
+
+      Loving you is the easiest and most beautiful thing I have ever done. 💖
+    </div>
+
+    <div id="finalLine">
+      And if I had to live this life all over again,<br>
+      I would still find you…<br>
+      and love you the same way — every single time. ❤️
+    </div>
   </div>
 </div>
 
 <script>
-
 function createHeart(x) {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -146,8 +168,19 @@ function surprise() {
   for(let i=0;i<12;i++){
     createHeart(Math.random()*window.innerWidth);
   }
+
+  // Fade in final line after 3 seconds
+  setTimeout(() => {
+    document.getElementById("finalLine").style.opacity = "1";
+  }, 3000);
 }
 
+// Initial hearts floating softly
+setTimeout(()=>{
+  for(let i=0;i<12;i++){
+    createHeart(Math.random()*window.innerWidth);
+  }
+},1000);
 </script>
 
 </body>
