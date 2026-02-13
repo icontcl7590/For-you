@@ -9,14 +9,30 @@
       margin: 0;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-      /* Grey gradient background */
-      background: linear-gradient(135deg, #a8a8a8, #888888, #b0b0b0);
+      background: linear-gradient(135deg, #0a0a0a, #2b2b2b, #5c5c5c);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       color: white;
       text-align: center;
+      position: relative;
+    }
+
+    /* Romantic shimmer overlay */
+    body::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.0) 50%, rgba(255,255,255,0.05) 100%);
+      pointer-events: none;
+      animation: shimmer 8s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     .container {
@@ -27,6 +43,8 @@
       backdrop-filter: blur(5px);
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.05);
+      position: relative;
+      z-index: 2;
     }
 
     @keyframes popIn {
@@ -137,7 +155,7 @@ function createHeart(x) {
   heart.style.left = x + "px";
   heart.style.bottom = "0px";
   heart.style.fontSize = (Math.random()*15+20)+"px";
-  heart.style.color = "#ff9ecf"; // pink hearts pop on grey
+  heart.style.color = "#ff9ecf"; // pink hearts pop on dark bg
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),3500);
 }
