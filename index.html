@@ -1,89 +1,137 @@
-#!/usr/bin/env bash
-#
-# Build and test the site content
-#
-# Requirement: html-proofer, jekyll
-#
-# Usage: See help information
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Friendship Surprise 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-set -eu
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #4a4a4a, #2b2b2b, #888888, #ff9ecf, #ff4f81);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
 
-SITE_DIR="_site"
+    body::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.05) 100%);
+      pointer-events: none;
+      animation: shimmer 8s linear infinite;
+    }
 
-_config="_config.yml"
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
 
-_baseurl=""
+    .container {
+      animation: popIn 1s ease-out forwards;
+      transform: scale(0.8);
+      opacity: 0;
+      padding: 20px;
+      backdrop-filter: blur(5px);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      position: relative;
+      z-index: 2;
+    }
 
-help() {
-  echo "Build and test the site content"
-  echo
-  echo "Usage:"
-  echo
-  echo "   bash $0 [options]"
-  echo
-  echo "Options:"
-  echo '     -c, --config   "<config_a[,config_b[...]]>"    Specify config file(s)'
-  echo "     -h, --help               Print this information."
+    @keyframes popIn { to { transform: scale(1); opacity: 1; } }
+
+    h1 { font-size: 48px; margin-bottom: 15px; text-shadow: 0 0 15px #fff; }
+    p { font-size: 20px; max-width: 450px; margin: auto; line-height: 1.6; color: #f0f0f0; }
+    button {
+      margin-top: 25px; padding: 15px 35px; border: none; border-radius: 40px;
+      background: #fff; color: #ff4f81; font-size: 18px; cursor: pointer;
+      transition: 0.2s ease; box-shadow: 0 0 20px #fff;
+    }
+    button:hover { transform: scale(1.1); }
+
+    .star, .confetti { position: absolute; pointer-events: none; will-change: transform, opacity; font-size: 24px; }
+
+    #message { display: none; margin-top: 20px; font-size: 24px; text-shadow: 0 0 20px white; }
+    #finalLine { opacity: 0; margin-top: 20px; transition: opacity 2s ease; }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <h1>Hey Future BFF! 🌟</h1>
+
+  <p>
+    Yo! 😎💖<br>
+    You seem awesome and I think we could be epic BFFs!<br>
+    Here’s a little fun surprise just for you —<br>
+    because friends like us are rare and worth celebrating! 🥳✨
+  </p>
+
+  <button onclick="surprise()">Open Surprise 🎁</button>
+
+  <div id="message">
+    <div class="mainMessage">
+      Can’t wait to make memories, laugh until it hurts,<br>
+      and share all the fun times together! 💖
+    </div>
+
+    <div id="finalLine">
+      Here’s to the start of an amazing BFF adventure! 🌈💫
+    </div>
+  </div>
+</div>
+
+<script>
+function createStar(x) {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.innerHTML = "⭐";
+  star.style.left = x + "px";
+  star.style.bottom = "0px";
+  star.style.fontSize = (Math.random()*15+20)+"px";
+  star.style.color = "#ffd700";
+  document.body.appendChild(star);
+  setTimeout(()=>star.remove(),3500);
 }
 
-read_baseurl() {
-  if [[ $_config == *","* ]]; then
-    # multiple config
-    IFS=","
-    read -ra config_array <<<"$_config"
+function createConfetti() {
+  const colors=["#ff4f81","#ffe6ec","#ff9ecf","#ffd700"];
+  for(let i=0;i<40;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.width="8px"; c.style.height="8px";
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    c.style.left=window.innerWidth/2+"px"; c.style.top=window.innerHeight/2+"px";
+    document.body.appendChild(c);
 
-    # reverse loop the config files
-    for ((i = ${#config_array[@]} - 1; i >= 0; i--)); do
-      _tmp_baseurl="$(grep '^baseurl:' "${config_array[i]}" | sed "s/.*: *//;s/['\"]//g;s/#.*//")"
-
-      if [[ -n $_tmp_baseurl ]]; then
-        _baseurl="$_tmp_baseurl"
-        break
-      fi
-    done
-
-  else
-    # single config
-    _baseurl="$(grep '^baseurl:' "$_config" | sed "s/.*: *//;s/['\"]//g;s/#.*//")"
-  fi
+    const dx=(Math.random()-0.5)*8;
+    const dy=(Math.random()-0.5)*8;
+    let life=0;
+    const anim=setInterval(()=>{
+      life++;
+      c.style.transform=`translate3d(${dx*life}px,${dy*life}px,0)`;
+      c.style.opacity=1-life/40;
+      if(life>40){c.remove();clearInterval(anim);}
+    },16);
+  }
 }
 
-main() {
-  # clean up
-  if [[ -d $SITE_DIR ]]; then
-    rm -rf "$SITE_DIR"
-  fi
-
-  read_baseurl
-
-  # build
-  JEKYLL_ENV=production bundle exec jekyll b \
-    -d "$SITE_DIR$_baseurl" -c "$_config"
-
-  # test
-  bundle exec htmlproofer "$SITE_DIR" \
-    --disable-external \
-    --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+function surprise() {
+  document.getElementById("message").style.display="block";
+  createConfetti();
+  for(let i=0;i<12;i++){ createStar(Math.random()*window.innerWidth); }
+  setTimeout(() => { document.getElementById("finalLine").style.opacity = "1"; }, 3000);
 }
 
-while (($#)); do
-  opt="$1"
-  case $opt in
-  -c | --config)
-    _config="$2"
-    shift
-    shift
-    ;;
-  -h | --help)
-    help
-    exit 0
-    ;;
-  *)
-    # unknown option
-    help
-    exit 1
-    ;;
-  esac
-done
-
-main
+setTimeout(()=>{ for(let i=0;i<12;i++){ createStar(Math.random()*window.innerWidth); } },1000);
+</script>
+</body>
+</html>
