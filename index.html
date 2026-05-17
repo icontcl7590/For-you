@@ -100,6 +100,14 @@ margin:20px 0;
 color:#f8e9ff;
 }
 
+.extra{
+font-size:18px;
+line-height:1.8;
+margin:15px 0;
+color:#ffe6f7;
+opacity:0.95;
+}
+
 .cursor{
 display:inline-block;
 width:8px;
@@ -128,7 +136,6 @@ transition:0.25s;
 
 button:hover{
 transform:scale(1.05);
-box-shadow:0 15px 30px rgba(200,80,192,0.45);
 }
 
 .surprise{
@@ -141,15 +148,16 @@ border:1px solid rgba(255,255,255,0.1);
 animation:fadeIn 1s ease;
 }
 
+.surpriseText{
+font-size:17px;
+line-height:1.7;
+color:#ffffff;
+min-height:120px;
+}
+
 @keyframes fadeIn{
 from{opacity:0; transform:translateY(10px);}
 to{opacity:1; transform:translateY(0);}
-}
-
-.surprise p{
-font-size:17px;
-line-height:1.7;
-opacity:0.95;
 }
 
 .heart{
@@ -180,16 +188,15 @@ to{transform:translateY(-10vh); opacity:0;}
 
 <div class="typing" id="typing"></div>
 
+<div class="extra">
+May God bless you with many more beautiful years, endless smiles, and a heart that always feels loved.<br><br>
+Because my world honestly feels brighter with you in it ✨
+</div>
+
 <button onclick="showSurprise()">Open Your Surprise 💌</button>
 
 <div class="surprise" id="surprise">
-<p>
-Cammilah… you are not just beautiful on the outside, but also rare in the way you make life feel softer for someone who truly cares about you ✨<br><br>
-
-I hope your 18th year brings you peace, growth, happiness, and people who value your heart the way it deserves 💖<br><br>
-
-And if I’m being honest… I hope I get to be one of the reasons you smile a little more often 🌹
-</p>
+<div class="surpriseText" id="surpriseText"></div>
 </div>
 
 </div>
@@ -201,18 +208,39 @@ const text =
 
 let i = 0;
 
-function type(){
+function typeMain(){
 if(i < text.length){
 document.getElementById("typing").innerHTML =
 text.substring(0,i) + '<span class="cursor"></span>';
 i++;
-setTimeout(type,40);
+setTimeout(typeMain,40);
 }
 }
-type();
+typeMain();
+
+const surpriseMessage =
+"Cammilah… you are not just beautiful on the outside, but also rare in the way you make life feel softer for someone who truly cares about you ✨ " +
+"I hope your 18th year brings you peace, growth, happiness, and people who value your heart the way it deserves 💖 " +
+"And if I’m being honest… I hope I get to be one of the reasons you smile a little more often 🌹";
+
+let j = 0;
+let typingStarted = false;
+
+function typeSurprise(){
+if(j < surpriseMessage.length){
+document.getElementById("surpriseText").innerHTML =
+surpriseMessage.substring(0,j) + '<span class="cursor"></span>';
+j++;
+setTimeout(typeSurprise,35);
+}
+}
 
 function showSurprise(){
 document.getElementById("surprise").style.display="block";
+if(!typingStarted){
+typingStarted = true;
+typeSurprise();
+}
 }
 
 function heartRain(){
