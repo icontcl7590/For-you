@@ -18,93 +18,151 @@ min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#8e2de2,#c850c0,#ff4f81);
+font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+background:radial-gradient(circle at top,#2b0a3d,#120018 60%,#0a0010);
+color:#fff;
 overflow:hidden;
-color:white;
-text-align:center;
 padding:20px;
+opacity:0;
+animation:pageIn 1.2s ease forwards;
 }
 
-.container{
-max-width:550px;
-padding:35px 25px;
-border-radius:25px;
-background:rgba(255,255,255,0.12);
-backdrop-filter:blur(5px);
-box-shadow:0 0 20px rgba(255,255,255,0.15);
-animation:fadeIn 1.5s ease;
+@keyframes pageIn{
+to{opacity:1;}
+}
+
+.glowOrb{
+position:absolute;
+width:300px;
+height:300px;
+border-radius:50%;
+filter:blur(80px);
+opacity:0.35;
+animation:float 8s ease-in-out infinite;
+}
+
+.orb1{
+background:#c850c0;
+top:-80px;
+left:-80px;
+}
+
+.orb2{
+background:#8e2de2;
+bottom:-100px;
+right:-100px;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(30px);}
+}
+
+.card{
+max-width:620px;
+width:100%;
+padding:40px 30px;
+border-radius:28px;
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.15);
+backdrop-filter:blur(14px);
+box-shadow:0 20px 60px rgba(0,0,0,0.6);
+text-align:center;
+animation:cardIn 1.5s ease;
+position:relative;
+z-index:2;
+}
+
+@keyframes cardIn{
+from{transform:translateY(25px); opacity:0;}
+to{transform:translateY(0); opacity:1;}
 }
 
 h1{
 font-size:38px;
-margin-bottom:20px;
-text-shadow:0 0 10px white;
+margin-bottom:18px;
+background:linear-gradient(90deg,#ff9ecf,#ffffff,#d896ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.message{
+.subtitle{
+font-size:16px;
+opacity:0.8;
+margin-bottom:20px;
+}
+
+.typing{
 font-size:19px;
 line-height:1.8;
-margin:15px 0;
+min-height:90px;
+margin:20px 0;
+color:#f8e9ff;
 }
 
-.highlight{
-font-weight:bold;
-color:#fff5fa;
+.cursor{
+display:inline-block;
+width:8px;
+background:#fff;
+margin-left:4px;
+animation:blink 0.8s infinite;
+}
+
+@keyframes blink{
+50%{opacity:0;}
 }
 
 button{
 margin-top:20px;
-padding:12px 24px;
+padding:14px 26px;
 border:none;
-border-radius:30px;
-background:white;
-color:#c850c0;
-font-size:16px;
-font-weight:bold;
+border-radius:50px;
+background:linear-gradient(90deg,#c850c0,#8e2de2);
+color:white;
+font-size:15px;
+font-weight:600;
 cursor:pointer;
-transition:0.2s;
+box-shadow:0 10px 25px rgba(200,80,192,0.3);
+transition:0.25s;
 }
 
 button:hover{
 transform:scale(1.05);
+box-shadow:0 15px 30px rgba(200,80,192,0.45);
 }
 
-.popup{
+.surprise{
 display:none;
-margin-top:20px;
-font-size:18px;
-line-height:1.7;
+margin-top:25px;
+padding:18px;
+border-radius:18px;
+background:rgba(255,255,255,0.06);
+border:1px solid rgba(255,255,255,0.1);
 animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.surprise p{
+font-size:17px;
+line-height:1.7;
+opacity:0.95;
 }
 
 .heart{
 position:absolute;
-font-size:18px;
+font-size:16px;
+animation:rise 6s linear forwards;
 opacity:0.7;
-animation:float 5s linear forwards;
 }
 
-@keyframes float{
-from{
-transform:translateY(100vh);
-opacity:0;
-}
-to{
-transform:translateY(-10vh);
-opacity:1;
-}
-}
-
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+@keyframes rise{
+from{transform:translateY(100vh); opacity:0;}
+10%{opacity:1;}
+to{transform:translateY(-10vh); opacity:0;}
 }
 
 </style>
@@ -112,80 +170,62 @@ transform:translateY(0);
 
 <body>
 
-<div class="container">
+<div class="glowOrb orb1"></div>
+<div class="glowOrb orb2"></div>
 
-<h1>🎂 Happy 18th Birthday Cammilah 💖</h1>
+<div class="card">
 
-<p class="message">
-Today the world celebrates someone truly special ✨
-<br><br>
+<h1>Happy 18th Birthday Cammilah 💖</h1>
+<div class="subtitle">A little message made just for you ✨</div>
 
-<span class="highlight">
-18 never looked this beautiful before ❤️
-</span>
+<div class="typing" id="typing"></div>
+
+<button onclick="showSurprise()">Open Your Surprise 💌</button>
+
+<div class="surprise" id="surprise">
+<p>
+Cammilah… you are not just beautiful on the outside, but also rare in the way you make life feel softer for someone who truly cares about you ✨<br><br>
+
+I hope your 18th year brings you peace, growth, happiness, and people who value your heart the way it deserves 💖<br><br>
+
+And if I’m being honest… I hope I get to be one of the reasons you smile a little more often 🌹
 </p>
-
-<p class="message">
-Cammilah… you deserve soft love, peace, genuine happiness, and someone who always makes you feel safe and appreciated 🌹
-</p>
-
-<p class="message">
-And honestly?
-<br>
-If I had one wish today… it would be to keep seeing that beautiful smile of yours forever 💓
-</p>
-
-<p class="message">
-May God bless you with many more beautiful years, endless smiles, and a heart that always feels loved 💖
-<br><br>
-Because the world honestly feels brighter with you in it ✨
-</p>
-
-<p class="message highlight">
-So promise me one thing…
-<br>
-stay this cute forever and never stop smiling 😭💕
-</p>
-
-<button onclick="showMessage()">
-Tap Me 💌
-</button>
-
-<div class="popup" id="popup">
-💖 You’re genuinely one of the prettiest souls I’ve ever met.
-<br><br>
-And no matter how many people exist in this world…
-<br>
-my eyes would still search for you first ✨
 </div>
 
 </div>
 
 <script>
 
-function createHeart(){
+const text =
+"Cammilah… turning 18 feels special, but not as special as you are. You are loved, appreciated, and honestly unforgettable 💖";
 
+let i = 0;
+
+function type(){
+if(i < text.length){
+document.getElementById("typing").innerHTML =
+text.substring(0,i) + '<span class="cursor"></span>';
+i++;
+setTimeout(type,40);
+}
+}
+type();
+
+function showSurprise(){
+document.getElementById("surprise").style.display="block";
+}
+
+function heartRain(){
 const heart=document.createElement("div");
-
 heart.className="heart";
-heart.innerHTML="💖";
-
+heart.innerHTML=["💖","💜","💗"][Math.floor(Math.random()*3)];
 heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*15+15)+"px";
-
+heart.style.fontSize=(Math.random()*10+14)+"px";
+heart.style.animationDuration=(Math.random()*3+4)+"s";
 document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.remove();
-},5000);
-
+setTimeout(()=>heart.remove(),6000);
 }
-
-setInterval(createHeart,1200);
-
-function showMessage(){
-document.getElementById("popup").style.display="block";
-}
+setInterval(heartRain,900);
 
 </script>
 
