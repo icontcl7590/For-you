@@ -1,124 +1,248 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy 18th Birthday Cammilah 💓</title>
+<title>Happy 18th Birthday Cammilah 💖</title>
 
 <style>
-body{
+
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#ff4f81,#ff9ecf,#ffd6e8);
+background:linear-gradient(135deg,#8e2de2,#c850c0,#ff4f81,#ffd6e8);
+overflow:hidden;
 color:white;
 text-align:center;
-overflow:hidden;
 padding:20px;
+position:relative;
+}
+
+.blur{
+position:absolute;
+border-radius:50%;
+filter:blur(80px);
+opacity:0.4;
+animation:move 10s infinite alternate;
+}
+
+.blur1{
+width:300px;
+height:300px;
+background:#ffffff;
+top:-100px;
+left:-100px;
+}
+
+.blur2{
+width:250px;
+height:250px;
+background:#d896ff;
+bottom:-80px;
+right:-80px;
+}
+
+@keyframes move{
+from{transform:translateY(0px);}
+to{transform:translateY(30px);}
 }
 
 .container{
-max-width:550px;
-padding:35px;
-border-radius:25px;
+max-width:600px;
+padding:40px 30px;
+border-radius:30px;
 background:rgba(255,255,255,0.12);
-backdrop-filter:blur(8px);
+backdrop-filter:blur(10px);
+box-shadow:0 0 35px rgba(255,255,255,0.25);
 animation:fadeIn 2s ease;
-box-shadow:0 0 25px rgba(255,255,255,0.3);
+z-index:2;
 }
 
 h1{
-font-size:40px;
+font-size:42px;
 margin-bottom:20px;
-text-shadow:0 0 15px #fff;
+text-shadow:0 0 15px white;
 animation:glow 2s infinite alternate;
 }
 
-p{
+.message{
 font-size:20px;
-line-height:1.8;
+line-height:1.9;
 margin:15px 0;
 }
 
 .highlight{
 font-weight:bold;
 color:#fff5fa;
-text-shadow:0 0 10px white;
+text-shadow:0 0 12px white;
+}
+
+.small{
+font-size:18px;
+opacity:0.95;
+}
+
+button{
+margin-top:25px;
+padding:14px 28px;
+border:none;
+border-radius:40px;
+background:white;
+color:#c850c0;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 0 20px rgba(255,255,255,0.5);
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+.popup{
+display:none;
+margin-top:25px;
+font-size:20px;
+line-height:1.8;
+animation:fadeIn 1s ease;
 }
 
 .heart{
 position:absolute;
-color:#fff;
 font-size:20px;
 animation:float 6s linear infinite;
-}
-
-@keyframes fadeIn{
-from{opacity:0; transform:scale(0.8);}
-to{opacity:1; transform:scale(1);}
-}
-
-@keyframes glow{
-from{text-shadow:0 0 10px #fff;}
-to{text-shadow:0 0 25px #fff0f6;}
+opacity:0.8;
 }
 
 @keyframes float{
-0%{transform:translateY(100vh); opacity:0;}
-20%{opacity:1;}
-100%{transform:translateY(-10vh); opacity:0;}
+0%{
+transform:translateY(100vh);
+opacity:0;
 }
+20%{
+opacity:1;
+}
+100%{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:scale(0.8);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+
+@keyframes glow{
+from{
+text-shadow:0 0 10px white;
+}
+to{
+text-shadow:0 0 25px #fff0f6;
+}
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
+
 <div class="container">
 
-<h1>🎂 Happy 18th Birthday Cammilah 💓</h1>
+<h1>🎂 Happy 18th Birthday Cammilah 💖</h1>
 
-<p>
-Today is extra special because the most beautiful girl just turned 18 ✨
+<p class="message">
+Today the world celebrates someone truly special ✨
+<br><br>
+
+<span class="highlight">
+18 never looked this beautiful before ❤️
+</span>
 </p>
 
-<p class="highlight">
-And honestly… if beauty had a favorite person, it would probably be you ❤️
+<p class="message small">
+Cammilah… you deserve soft love, genuine happiness, peace, and someone who always makes you feel safe, appreciated, and deeply loved 🌹
 </p>
 
-<p>
-Thank you for your smile, your kindness, your voice, and the way you somehow make my whole day better without even trying 🌹
+<p class="message">
+And honestly?
+<br>
+If I had one wish today… it would be to keep seeing that beautiful smile of yours forever 💓
 </p>
 
-<p>
-I hope one day you truly see yourself the way I see you… because Cammilah, you are genuinely unforgettable 💖
+<p class="message">
+May God bless you with many more beautiful years, countless smiles, endless peace, and a heart that always feels loved 💖
+<br><br>
+Because honestly…
+<br>
+the world feels softer, brighter, and way more beautiful with you in it ✨
 </p>
 
-<p class="highlight">
-18 looks perfect on you already 😭💕
+<p class="message highlight">
+So promise me one thing, birthday girl…
+<br>
+stay this cute forever and keep giving the world that dangerously beautiful smile 😭💕
 </p>
 
-<p>
-May your birthday be filled with happiness, love, soft moments, and everything beautiful — just like you ✨
-</p>
+<button onclick="showMessage()">
+Tap Me 💌
+</button>
+
+<div class="popup" id="popup">
+💖  
+You are adorable in ways you probably don’t even realize.
+<br><br>
+And no matter how many people exist in this world…
+<br>
+my eyes would still search for you first ✨
+</div>
 
 </div>
 
 <script>
+
 function createHeart(){
 const heart=document.createElement("div");
+
 heart.className="heart";
-heart.innerHTML="💓";
+heart.innerHTML=["💖","💓","❤️","💕"][Math.floor(Math.random()*4)];
+
 heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*20+15)+"px";
+heart.style.fontSize=(Math.random()*25+15)+"px";
 heart.style.animationDuration=(Math.random()*3+4)+"s";
+
 document.body.appendChild(heart);
 
-setTimeout(()=>{heart.remove()},7000);
+setTimeout(()=>{
+heart.remove();
+},7000);
 }
 
-setInterval(createHeart,500);
+setInterval(createHeart,400);
+
+function showMessage(){
+document.getElementById("popup").style.display="block";
+}
+
 </script>
 
 </body>
