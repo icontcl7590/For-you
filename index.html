@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Women's Day 🌸</title>
+<title>Happy 18th Birthday Cammilah 💓</title>
 
 <style>
 body{
@@ -12,19 +12,21 @@ display:flex;
 justify-content:center;
 align-items:center;
 font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#2b2b2b,#555,#999);
+background:linear-gradient(135deg,#ff4f81,#ff9ecf,#ffd6e8);
 color:white;
 text-align:center;
 overflow:hidden;
+padding:20px;
 }
 
 .container{
-max-width:500px;
-padding:30px;
-border-radius:20px;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(6px);
+max-width:550px;
+padding:35px;
+border-radius:25px;
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(8px);
 animation:fadeIn 2s ease;
+box-shadow:0 0 25px rgba(255,255,255,0.3);
 }
 
 h1{
@@ -36,13 +38,19 @@ animation:glow 2s infinite alternate;
 
 p{
 font-size:20px;
-line-height:1.7;
-margin:10px 0;
+line-height:1.8;
+margin:15px 0;
+}
+
+.highlight{
+font-weight:bold;
+color:#fff5fa;
+text-shadow:0 0 10px white;
 }
 
 .heart{
 position:absolute;
-color:#ff4f81;
+color:#fff;
 font-size:20px;
 animation:float 6s linear infinite;
 }
@@ -54,7 +62,7 @@ to{opacity:1; transform:scale(1);}
 
 @keyframes glow{
 from{text-shadow:0 0 10px #fff;}
-to{text-shadow:0 0 25px #ff9ecf;}
+to{text-shadow:0 0 25px #fff0f6;}
 }
 
 @keyframes float{
@@ -69,18 +77,30 @@ to{text-shadow:0 0 25px #ff9ecf;}
 
 <div class="container">
 
-<h1>🌸 Happy Women's Day 🌸</h1>
+<h1>🎂 Happy 18th Birthday Cammilah 💓</h1>
 
 <p>
-I almost let the day end without saying this…
-<br><br>
-<strong>Happy Women’s Day to the most special woman in my life ❤️</strong>
+Today is extra special because the most beautiful girl just turned 18 ✨
+</p>
+
+<p class="highlight">
+And honestly… if beauty had a favorite person, it would probably be you ❤️
 </p>
 
 <p>
-Thank you for being strong, kind, and amazing in your own way.
-<br>
-I’m really lucky to have you. 🌹
+Thank you for your smile, your kindness, your voice, and the way you somehow make my whole day better without even trying 🌹
+</p>
+
+<p>
+I hope one day you truly see yourself the way I see you… because Cammilah, you are genuinely unforgettable 💖
+</p>
+
+<p class="highlight">
+18 looks perfect on you already 😭💕
+</p>
+
+<p>
+May your birthday be filled with happiness, love, soft moments, and everything beautiful — just like you ✨
 </p>
 
 </div>
@@ -89,7 +109,7 @@ I’m really lucky to have you. 🌹
 function createHeart(){
 const heart=document.createElement("div");
 heart.className="heart";
-heart.innerHTML="❤️";
+heart.innerHTML="💓";
 heart.style.left=Math.random()*100+"vw";
 heart.style.fontSize=(Math.random()*20+15)+"px";
 heart.style.animationDuration=(Math.random()*3+4)+"s";
